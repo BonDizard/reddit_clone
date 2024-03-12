@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "499895267419",
+    "firebase_url": "https://reddit-clone-82830-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "reddit-clone-82830",
+    "storage_bucket": "reddit-clone-82830.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499895267419:android:27ee22ec97749e3dca8f7e",
+        "android_client_info": {
+          "package_name": "com.example.reddit_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499895267419-1i5rp7v01mdd72mkpg9q0mf7f0k57c93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqX-W1rRKO0enQPsClpxJuz_MaSwjuPlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499895267419-1i5rp7v01mdd72mkpg9q0mf7f0k57c93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
