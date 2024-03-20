@@ -5,30 +5,35 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/auth/controller/auth_controller.dart';
 
 class SignInButton extends ConsumerWidget {
-  const SignInButton({super.key});
+  final bool isFromLogin;
+  const SignInButton({Key? key, this.isFromLogin = true}) : super(key: key);
 
-  void signInWithGoogle(WidgetRef ref, BuildContext context) {
-    ref.read(authControllerProvider.notifier).signInWithGoogle(context);
+  void signInWithGoogle(BuildContext context, WidgetRef ref) {
+    ref
+        .read(authControllerProvider.notifier)
+        .signInWithGoogle(context, isFromLogin);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(18.0),
       child: ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
-            ),
-            minimumSize: const Size(double.infinity, 50)),
-        onPressed: () => signInWithGoogle(ref, context),
+        onPressed: () => signInWithGoogle(context, ref),
         icon: Image.asset(
           Constants.googlePath,
           width: 35,
         ),
         label: const Text(
-          'Sign in with Google',
-          style: TextStyle(color: Pallete.whiteColor, fontSize: 18),
+          'Continue with Google',
+          style: TextStyle(fontSize: 18),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Pallete.greyColor,
+          minimumSize: const Size(double.infinity, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
         ),
       ),
     );

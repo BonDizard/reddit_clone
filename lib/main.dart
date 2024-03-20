@@ -8,7 +8,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'features/auth/controller/auth_controller.dart';
 
 void main() async {
@@ -46,7 +45,7 @@ class MyAppState extends ConsumerState<MyApp> {
           data: (data) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
-            theme: Pallete.darkModeAppTheme,
+            theme: ref.read(themeNotifierProvider),
             routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
               if (data != null) {
                 getData(ref, data);

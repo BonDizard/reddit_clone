@@ -7,9 +7,7 @@ class Community {
   final String avatar;
   final List<String> members;
   final List<String> mods;
-
-//<editor-fold desc="Data Methods">
-  const Community({
+  Community({
     required this.id,
     required this.name,
     required this.banner,
@@ -17,39 +15,6 @@ class Community {
     required this.members,
     required this.mods,
   });
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is Community &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          banner == other.banner &&
-          avatar == other.avatar &&
-          members == other.members &&
-          mods == other.mods);
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      name.hashCode ^
-      banner.hashCode ^
-      avatar.hashCode ^
-      members.hashCode ^
-      mods.hashCode;
-
-  @override
-  String toString() {
-    return 'Community{'
-        ' id: $id,'
-        ' name: $name,'
-        ' banner: $banner,'
-        ' avatar: $avatar,'
-        ' members: $members,'
-        ' mods: $mods,'
-        '}';
-  }
 
   Community copyWith({
     String? id,
@@ -82,12 +47,40 @@ class Community {
 
   factory Community.fromMap(Map<String, dynamic> map) {
     return Community(
-      id: map['id'] ?? ' ',
-      name: map['name'] ?? ' ',
-      banner: map['banner'] ?? ' ',
-      avatar: map['avatar'] ?? ' ',
+      id: map['id'] ?? '',
+      name: map['name'] ?? '',
+      banner: map['banner'] ?? '',
+      avatar: map['avatar'] ?? '',
       members: List<String>.from(map['members']),
       mods: List<String>.from(map['mods']),
     );
+  }
+
+  @override
+  String toString() {
+    return 'Community(id: $id, name: $name, banner: $banner, avatar: $avatar, members: $members, mods: $mods)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Community &&
+        other.id == id &&
+        other.name == name &&
+        other.banner == banner &&
+        other.avatar == avatar &&
+        listEquals(other.members, members) &&
+        listEquals(other.mods, mods);
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        banner.hashCode ^
+        avatar.hashCode ^
+        members.hashCode ^
+        mods.hashCode;
   }
 }

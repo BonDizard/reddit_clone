@@ -6,53 +6,52 @@ import '../../../core/common/loader.dart';
 import '../../../core/common/sign_in_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../responsive/responsive.dart';
 import '../controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
+
+  void signInAsGuest(WidgetRef ref, BuildContext context) {
+    ref.read(authControllerProvider.notifier).signInAsGuest(context);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = ref.watch(authControllerProvider);
+
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(
-          width: 20,
-        ),
-        title: Center(
-          child: Image.asset(
-            Constants.logoPath,
-            height: 40,
-          ),
+        title: Image.asset(
+          Constants.logoPath,
+          height: 40,
         ),
         actions: [
           TextButton(
-            onPressed: () {},
-            child: Text(
+            onPressed: () => signInAsGuest(ref, context),
+            child: const Text(
               'Skip',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Pallete.blueColor,
               ),
             ),
           ),
         ],
       ),
       body: isLoading
-          ? Loader()
+          ? const Loader()
           : Column(
               children: [
-                SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  'Dice into anything',
+                const SizedBox(height: 30),
+                const Text(
+                  'Dive into anything',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 0.5,
                   ),
                 ),
+                const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
@@ -60,10 +59,8 @@ class LoginScreen extends ConsumerWidget {
                     height: 400,
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                SignInButton(),
+                const SizedBox(height: 20),
+                const Responsive(child: SignInButton()),
               ],
             ),
     );
