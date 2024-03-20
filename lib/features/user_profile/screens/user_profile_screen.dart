@@ -6,6 +6,7 @@ import '../../../core/common/error_text.dart';
 import '../../../core/common/loader.dart';
 import '../../../core/common/post_card.dart';
 import '../controller/user_profile_controller.dart';
+import 'package:flutter/foundation.dart';
 
 class UserProfileScreen extends ConsumerWidget {
   final String uid;
@@ -111,7 +112,12 @@ class UserProfileScreen extends ConsumerWidget {
                     loading: () => const Loader(),
                   ),
             ),
-            error: (error, stackTrace) => ErrorText(error: error.toString()),
+            error: (error, stackTrace) {
+              if (kDebugMode) {
+                print(error);
+              }
+              return ErrorText(error: error.toString());
+            },
             loading: () => const Loader(),
           ),
     );

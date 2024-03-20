@@ -4,6 +4,7 @@ import 'package:reddit_clone/core/common/error_text.dart';
 import 'package:reddit_clone/core/common/loader.dart';
 import 'package:reddit_clone/features/community/controller/community_controller.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:flutter/foundation.dart';
 
 class SearchCommunityDelegate extends SearchDelegate {
   final WidgetRef ref;
@@ -47,9 +48,14 @@ class SearchCommunityDelegate extends SearchDelegate {
               );
             },
           ),
-          error: (error, stackTrace) => ErrorText(
-            error: error.toString(),
-          ),
+          error: (error, stackTrace) {
+            if (kDebugMode) {
+              print(error);
+            }
+            return ErrorText(
+              error: error.toString(),
+            );
+          },
           loading: () => const Loader(),
         );
   }

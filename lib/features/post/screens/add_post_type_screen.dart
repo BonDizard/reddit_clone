@@ -207,9 +207,14 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                               },
                             );
                           },
-                          error: (error, stackTrace) => ErrorText(
-                            error: error.toString(),
-                          ),
+                          error: (error, stackTrace) {
+                            if (kDebugMode) {
+                              print(error);
+                            }
+                            return ErrorText(
+                              error: error.toString(),
+                            );
+                          },
                           loading: () => const Loader(),
                         ),
                   ],

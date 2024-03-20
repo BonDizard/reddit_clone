@@ -8,6 +8,7 @@ import 'package:reddit_clone/models/community_model.dart';
 import 'package:routemaster/routemaster.dart';
 
 import '../../../core/common/post_card.dart';
+import 'package:flutter/foundation.dart';
 
 class CommunityScreen extends ConsumerWidget {
   final String name;
@@ -135,7 +136,12 @@ class CommunityScreen extends ConsumerWidget {
                     loading: () => const Loader(),
                   ),
             ),
-            error: (error, stackTrace) => ErrorText(error: error.toString()),
+            error: (error, stackTrace) {
+              if (kDebugMode) {
+                print(error);
+              }
+              return ErrorText(error: error.toString());
+            },
             loading: () => const Loader(),
           ),
     );

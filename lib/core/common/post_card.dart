@@ -291,9 +291,12 @@ class PostCard extends ConsumerWidget {
                                         }
                                         return const SizedBox();
                                       },
-                                      error: (error, stackTrace) => ErrorText(
-                                        error: error.toString(),
-                                      ),
+                                      error: (error, stackTrace) {
+                                        print(error);
+                                        return ErrorText(
+                                          error: error.toString(),
+                                        );
+                                      },
                                       loading: () => const Loader(),
                                     ),
                                 IconButton(

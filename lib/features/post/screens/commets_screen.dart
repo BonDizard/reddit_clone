@@ -9,6 +9,7 @@ import '../../../responsive/responsive.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../controller/post_controllers.dart';
 import '../widgets/comment_card.dart';
+import 'package:flutter/foundation.dart';
 
 class CommentsScreen extends ConsumerStatefulWidget {
   final String postId;
@@ -87,9 +88,14 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
                 ],
               );
             },
-            error: (error, stackTrace) => ErrorText(
-              error: error.toString(),
-            ),
+            error: (error, stackTrace) {
+              if (kDebugMode) {
+                print(error);
+              }
+              return ErrorText(
+                error: error.toString(),
+              );
+            },
             loading: () => const Loader(),
           ),
     );

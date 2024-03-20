@@ -199,9 +199,14 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   ),
           ),
           loading: () => const Loader(),
-          error: (error, stackTrace) => ErrorText(
-            error: error.toString(),
-          ),
+          error: (error, stackTrace) {
+            if (kDebugMode) {
+              print(error);
+            }
+            return ErrorText(
+              error: error.toString(),
+            );
+          },
         );
   }
 }

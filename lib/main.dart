@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:reddit_clone/core/common/error_text.dart';
 import 'package:reddit_clone/core/common/loader.dart';
@@ -57,7 +58,13 @@ class MyAppState extends ConsumerState<MyApp> {
             }),
             routeInformationParser: const RoutemasterParser(),
           ),
-          error: (error, stackTrace) => ErrorText(error: error.toString()),
+          error: (error, stackTrace) {
+            if (kDebugMode) {
+              print(error);
+            }
+
+            return ErrorText(error: error.toString());
+          },
           loading: () => const Loader(),
         );
   }

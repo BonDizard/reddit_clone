@@ -7,6 +7,7 @@ import '../../core/common/post_card.dart';
 import '../auth/controller/auth_controller.dart';
 import '../community/controller/community_controller.dart';
 import '../post/controller/post_controllers.dart';
+import 'package:flutter/foundation.dart';
 
 class FeedScreen extends ConsumerWidget {
   const FeedScreen({super.key});
@@ -36,9 +37,14 @@ class FeedScreen extends ConsumerWidget {
                       },
                       loading: () => const Loader(),
                     ),
-            error: (error, stackTrace) => ErrorText(
-              error: error.toString(),
-            ),
+            error: (error, stackTrace) {
+              if (kDebugMode) {
+                print(error);
+              }
+              return ErrorText(
+                error: error.toString(),
+              );
+            },
             loading: () => const Loader(),
           );
     }
@@ -60,9 +66,14 @@ class FeedScreen extends ConsumerWidget {
                 },
                 loading: () => const Loader(),
               ),
-          error: (error, stackTrace) => ErrorText(
-            error: error.toString(),
-          ),
+          error: (error, stackTrace) {
+            if (kDebugMode) {
+              print(error);
+            }
+            return ErrorText(
+              error: error.toString(),
+            );
+          },
           loading: () => const Loader(),
         );
   }

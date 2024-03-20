@@ -4,6 +4,7 @@ import 'package:reddit_clone/core/common/error_text.dart';
 import 'package:reddit_clone/core/common/loader.dart';
 import 'package:reddit_clone/features/auth/controller/auth_controller.dart';
 import 'package:reddit_clone/features/community/controller/community_controller.dart';
+import 'package:flutter/foundation.dart';
 
 class AddModsScreen extends ConsumerStatefulWidget {
   final String name;
@@ -75,16 +76,26 @@ class _AddModsScreenState extends ConsumerState<AddModsScreen> {
                           title: Text(user.name),
                         );
                       },
-                      error: (error, stackTrace) => ErrorText(
-                        error: error.toString(),
-                      ),
+                      error: (error, stackTrace) {
+                        if (kDebugMode) {
+                          print(error);
+                        }
+                        return ErrorText(
+                          error: error.toString(),
+                        );
+                      },
                       loading: () => const Loader(),
                     );
               },
             ),
-            error: (error, stackTrace) => ErrorText(
-              error: error.toString(),
-            ),
+            error: (error, stackTrace) {
+              if (kDebugMode) {
+                print(error);
+              }
+              return ErrorText(
+                error: error.toString(),
+              );
+            },
             loading: () => const Loader(),
           ),
     );
